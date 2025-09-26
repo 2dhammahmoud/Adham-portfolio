@@ -18,11 +18,16 @@
 
 ---
 
+
 ## 📊 GitHub Stats
 
-![Adham's GitHub stats](https://github-readme-stats.vercel.app/api?username=2dhammahmoud&show_icons=true&theme=radical)
 
-![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=2dhammahmoud&layout=compact&theme=radical)
+<p align="center">
+  <img src="https://github-readme-stats.vercel.app/api?username=2dhammahmoud&show_icons=true&theme=radical" width="45%"/>
+  &nbsp;&nbsp;
+  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=2dhammahmoud&layout=compact&theme=radical" width="45%"/>
+</p>
+
 
 ---
 
@@ -45,3 +50,7 @@
     <img src="https://img.shields.io/badge/LeetCode-%2312100E?style=for-the-badge&logo=leetcode&logoColor=white" alt="LeetCode"/>
   </a>
 </p>
+
+
+
+
