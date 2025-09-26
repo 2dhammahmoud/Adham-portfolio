@@ -1,2 +1,3 @@
-# Adham-portfolio
-Portfolio showcasing my projects in Data Science, Machine Learning, and AI.  Personal Data Science portfolio – Python, ML, Data Analysis, and Visualization.  A collection of my Data Science and ML projects to demonstrate skills and learning.
+<div align="center">
+  <img src="https://github.com/2dhammahmoud/Adham-portfolio/blob/main/Developer%2001%20-%20Whoooa!.gif" width="300"/>
+</div>
