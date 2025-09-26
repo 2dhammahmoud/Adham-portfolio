@@ -52,5 +52,17 @@
 </p>
 
 
+## 📌 Pinned Repositories
 
+<p align="center">
+  <a href="https://github.com/2dhammahmoud/crime_rate">
+    <img src="https://github-readme-stats.vercel.app/api/pin/?username=2dhammahmoud&repo=crime_rate&theme=radical&description=false" />
+  </a>
+  <a href="https://github.com/2dhammahmoud/student_performance">
+    <img src="https://github-readme-stats.vercel.app/api/pin/?username=2dhammahmoud&repo=student_performance&theme=radical&description=false" />
+  </a>
+  <a href="https://github.com/2dhammahmoud/Premier-League">
+    <img src="https://github-readme-stats.vercel.app/api/pin/?username=2dhammahmoud&repo=Premier-League&theme=radical&description=false" />
+  </a>
+</p>
 
