@@ -8,25 +8,33 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # 1️⃣ Checkout the repo
       - name: Checkout repository
         uses: actions/checkout@v3
 
+      # 2️⃣ Create dist folder
+      - name: Create dist folder
+        run: mkdir -p dist
+
+      # 3️⃣ Generate Snake SVG
       - name: Generate Snake (SVG)
         uses: Platane/snk/svg-only@v3
         with:
           github_user_name: 2dhammahmoud
-          svg_out_path: snake.svg
+          svg_out_path: dist/snake.svg
 
-      - name: Create output branch if not exists
+      # 4️⃣ Create output branch if not exists
+      - name: Create output branch
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git fetch origin output || git checkout --orphan output
           git checkout -B output
 
+      # 5️⃣ Commit and push dist folder
       - name: Commit and push snake.svg
         run: |
-          git add snake.svg
+          git add dist/snake.svg
           git commit -m "Add snake.svg"
           git push -f origin output
         env:
