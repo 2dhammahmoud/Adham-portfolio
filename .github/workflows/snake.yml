@@ -15,12 +15,19 @@ jobs:
         uses: Platane/snk/svg-only@v3
         with:
           github_user_name: 2dhammahmoud
-          outputs: dist/snake.svg
+          svg_out_path: snake.svg
 
-      - name: Deploy to GitHub Pages
-        uses: crazy-max/ghaction-github-pages@v3.1.0
-        with:
-          target_branch: output
-          build_dir: dist
+      - name: Create output branch if not exists
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git fetch origin output || git checkout --orphan output
+          git checkout -B output
+
+      - name: Commit and push snake.svg
+        run: |
+          git add snake.svg
+          git commit -m "Add snake.svg"
+          git push -f origin output
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
