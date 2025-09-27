@@ -1,0 +1,43 @@
+name: Generate Contributions Chart
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 0 * * *' # يوميًا منتصف الليل بتوقيت UTC
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1️⃣ Checkout repo
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # 2️⃣ Install dependencies
+      - name: Install Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+
+      # 3️⃣ Generate contributions SVG
+      - name: Generate GitHub Contributions SVG
+        run: |
+          npx snk \
+            --github-user 2dhammahmoud \
+            --svg-out dist/contributions.svg
+
+      # 4️⃣ Configure Git
+      - name: Configure git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      # 5️⃣ Commit and push to output branch
+      - name: Commit and push
+        run: |
+          git add dist/contributions.svg
+          git commit -m "Update contributions chart" || echo "No changes to commit"
+          git push -f origin output
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
