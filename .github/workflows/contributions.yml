@@ -10,44 +10,21 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # 1️⃣ Checkout repo
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      # 2️⃣ Install Node.js
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '20'
-
-      # 3️⃣ Create dist folder
-      - name: Create folder
-        run: mkdir -p dist
-
-      # 4️⃣ Generate GitHub Contributions SVG
       - name: Generate Contributions SVG
-        run: |
-          npx snk@latest \
-            --user 2dhammahmoud \
-            --svg-out dist/contributions.svg
+        uses: Platane/snk@v3
+        with:
+          github_user_name: 2dhammahmoud
+          svg_out_path: dist/contributions.svg
 
-      # 5️⃣ Configure Git
-      - name: Configure git
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-
-      # 6️⃣ Create output branch if not exists
-      - name: Create output branch
-        run: |
-          git fetch origin output || git checkout --orphan output
-          git checkout -B output
-
-      # 7️⃣ Commit and push
-      - name: Commit and push contributions.svg
-        run: |
-          git add dist/contributions.svg
-          git commit -m "Update contributions chart" || echo "No changes to commit"
-          git push -f origin output
+      - name: Commit and push
+        uses: EndBug/add-and-commit@v9
+        with:
+          author_name: github-actions[bot]
+          author_email: github-actions[bot]@users.noreply.github.com
+          message: 'Update contributions chart'
+          add: 'dist/contributions.svg'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
