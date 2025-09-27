@@ -14,27 +14,37 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      # 2️⃣ Install dependencies
-      - name: Install Node.js
+      # 2️⃣ Install Node.js
+      - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '20'
 
-      # 3️⃣ Generate contributions SVG
-      - name: Generate GitHub Contributions SVG
+      # 3️⃣ Create dist folder
+      - name: Create folder
+        run: mkdir -p dist
+
+      # 4️⃣ Generate GitHub Contributions SVG
+      - name: Generate Contributions SVG
         run: |
-          npx snk \
-            --github-user 2dhammahmoud \
+          npx snk@latest \
+            --user 2dhammahmoud \
             --svg-out dist/contributions.svg
 
-      # 4️⃣ Configure Git
+      # 5️⃣ Configure Git
       - name: Configure git
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
-      # 5️⃣ Commit and push to output branch
-      - name: Commit and push
+      # 6️⃣ Create output branch if not exists
+      - name: Create output branch
+        run: |
+          git fetch origin output || git checkout --orphan output
+          git checkout -B output
+
+      # 7️⃣ Commit and push
+      - name: Commit and push contributions.svg
         run: |
           git add dist/contributions.svg
           git commit -m "Update contributions chart" || echo "No changes to commit"
